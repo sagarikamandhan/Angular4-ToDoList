@@ -2,7 +2,7 @@
   <div class="jumbotron">
     <div class="row">
       <div class="text-center col-md-offset-2 col-md-8">
-        <form #taskform="ngForm" class="form-inline" (ngSubmit)="addTask(taskform)">
+        <form #taskform="ngForm" class="form-inline" (ngSubmit)="AddTask(taskform)">
           <div class="form-group">
             <div class="col-md-4">
               <label for="taskname" class="control-label">Enter Task :</label>
@@ -14,11 +14,14 @@
               <button type="submit" class="btn btn-success">Add</button>
             </div>
           </div>
+          <p class="text-danger">{{ErrorMessage}}</p>
         </form>
       </div>
     </div>
   </div>
 </div>
+<div *ngIf="added" class="alert alert-success"><strong>SUCCESS! </strong>{{Message}}</div>
+<div *ngIf="deleted" class="alert alert-danger"><strong>WARNING!</strong>{{DeleteMessage}}</div>
 <div class="container">
   <div class="row">
     <table class="table table-hover">
@@ -32,8 +35,8 @@
         <tbody>
             <tr *ngFor ="let item of Items">
                 <td>{{item.title}}</td>
-                <td><input type="checkbox" [checked] ="item.completed" (click)="update(item)"></td>
-                <td><input type="button" class="btn btn-danger" value="Delete" (click)="delete(item._id)"></td>
+                <td><input type="checkbox" name="taskStatus" [checked] ="item.completed" (click)="UpdateTask(item)"></td>
+                <td><input type="button" class="btn btn-danger" value="Delete" (click)="DeleteTask(item.id)"></td>
             </tr>
         </tbody>
     </table>
