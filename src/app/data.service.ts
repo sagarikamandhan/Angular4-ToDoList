@@ -7,7 +7,7 @@ export class DataService {
 
   constructor(private http:Http) { }
   getAllTaskList(){
-    return this.http.get("https://jsonplaceholder.typicode.com/todos").map(res => res.json());
+    return this.http.get("http://www.mocky.io/v2/5b69d7203200006e31af5e50").map((res : Response)=> res.json());
   }
 
 }

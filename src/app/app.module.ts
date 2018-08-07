@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule} from '@angular/http';
+import { FormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ToDoComponent } from './to-do/to-do.component';
@@ -10,7 +12,7 @@ import { ToDoComponent } from './to-do/to-do.component';
     ToDoComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,HttpModule,FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

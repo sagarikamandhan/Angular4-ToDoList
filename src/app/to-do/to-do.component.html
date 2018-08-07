@@ -1,9 +1,41 @@
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <div class="input-group mb-4">
-          <input type="text" class="form-control" placeholder="Some text">
-        </div>
+  <div class="jumbotron">
+    <div class="row">
+      <div class="text-center col-md-offset-2 col-md-8">
+        <form #taskform="ngForm" class="form-inline" (ngSubmit)="addTask(taskform)">
+          <div class="form-group">
+            <div class="col-md-4">
+              <label for="taskname" class="control-label">Enter Task :</label>
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" name="taskname" ngModel required>
+            </div>
+            <div class="col-md-2">
+              <button type="submit" class="btn btn-success">Add</button>
+            </div>
+          </div>
+        </form>
       </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Item Done</th>
+                <th>Delete Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor ="let item of Items">
+                <td>{{item.title}}</td>
+                <td><input type="checkbox" [checked] ="item.completed" (click)="update(item)"></td>
+                <td><input type="button" class="btn btn-danger" value="Delete" (click)="delete(item._id)"></td>
+            </tr>
+        </tbody>
+    </table>
   </div>
 </div>
