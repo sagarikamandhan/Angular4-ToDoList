@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 export class DataService {
 
   constructor(private http:Http) { }
+  //get the data from API http://www.mocky.io/v2/5b69d7203200006e31af5e50
   getAllTaskList(){
     return this.http.get("http://www.mocky.io/v2/5b69d7203200006e31af5e50").map((res : Response)=> res.json());
   }

@@ -8,10 +8,13 @@
               <label for="taskname" class="control-label">Enter Task :</label>
             </div>
             <div class="col-md-6">
-              <input type="text" class="form-control" name="taskname" ngModel required>
+              <input type="text" class="form-control" name="taskname" [(ngModel)]="Item.title" required>
             </div>
-            <div class="col-md-2">
+            <div *ngIf="addButton" class="col-md-2">
               <button type="submit" class="btn btn-success">Add</button>
+            </div>
+            <div *ngIf="saveButton" class="col-md-2">
+              <button type="button" class="btn btn-success" (click)=EditTask(taskform)>Save</button>
             </div>
           </div>
           <p class="text-danger">{{ErrorMessage}}</p>
@@ -20,8 +23,10 @@
     </div>
   </div>
 </div>
-<div *ngIf="added" class="alert alert-success"><strong>SUCCESS! </strong>{{Message}}</div>
-<div *ngIf="deleted" class="alert alert-danger"><strong>WARNING!</strong>{{DeleteMessage}}</div>
+<div *ngIf="added" class="alert alert-success">
+  <strong>SUCCESS! </strong>{{Message}}</div>
+<div *ngIf="deleted" class="alert alert-danger">
+  <strong>WARNING!</strong>{{DeleteMessage}}</div>
 <div class="container">
   <div class="row">
     <table class="table table-hover">
@@ -29,13 +34,15 @@
             <tr>
                 <th>Item Name</th>
                 <th>Item Done</th>
+                <th>Edit Action</th>
                 <th>Delete Action</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor ="let item of Items">
                 <td>{{item.title}}</td>
-                <td><input type="checkbox" name="taskStatus" [checked] ="item.completed" (click)="UpdateTask(item)"></td>
+                <td><input type="checkbox" name="taskStatus" [checked] ="item.completed" (click)="UpdateTaskStatus(item)"></td>
+                <td><input type="button" class="btn btn-primary" value="Edit" (click)="Edit(item)"></td>
                 <td><input type="button" class="btn btn-danger" value="Delete" (click)="DeleteTask(item.id)"></td>
             </tr>
         </tbody>
